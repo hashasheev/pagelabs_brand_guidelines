@@ -1,0 +1,656 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pagelabs — Brand Identity Guidelines 2025</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,300;0,400;0,500;0,700&display=swap" rel="stylesheet">
+<style>
+/* ── RESET & BASE ── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --blue: #105EF6;
+  --blue-dark: #0A3DB8;
+  --blue-light: #4D8BF8;
+  --bg: #202020;
+  --sidebar-bg: #1a1a1a;
+  --card-bg: #262626;
+  --text: #FFFFFF;
+  --text-muted: #AAAAAA;
+  --border: rgba(255,255,255,0.06);
+  --gray-600: #6B6B6B;
+  --font: 'DM Sans', sans-serif;
+  --nav-w: 260px;
+}
+
+body.light-mode {
+  --bg: #FFFFFF;
+  --sidebar-bg: #F4F4F4;
+  --card-bg: #EAEAEA;
+  --text: #202020;
+  --text-muted: #6B6B6B;
+  --border: rgba(0,0,0,0.06);
+}
+
+html, body { 
+  scroll-behavior: smooth; 
+  font-size: 16px; 
+  width: 100%;
+  max-width: 100vw;
+  overflow-x: hidden;
+}
+body {
+  font-family: var(--font);
+  background: var(--bg);
+  color: var(--text);
+  cursor: none;
+  line-height: 1.6;
+  transition: background 0.3s, color 0.3s;
+}
+
+/* ── THEME TOGGLE ── */
+.theme-toggle {
+  padding: 0 28px 24px;
+  display: flex; gap: 10px;
+}
+.theme-btn {
+  flex: 1; height: 32px; border-radius: 6px; border: 1px solid var(--border);
+  background: transparent; color: var(--text-muted); font-size: 10px;
+  font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em;
+  cursor: pointer; transition: 0.2s;
+  display: flex; align-items: center; justify-content: center; gap: 8px;
+}
+.theme-btn:hover { border-color: var(--blue); color: var(--text); }
+.theme-btn.active { background: var(--blue); color: #fff; border-color: var(--blue); }
+
+/* ── LOGO SWAP LOGIC ── */
+.logo-dark { display: block; }
+.logo-light { display: none; }
+body.light-mode .logo-dark { display: none; }
+body.light-mode .logo-light { display: block; }
+
+/* ── CUSTOM CURSOR ── */
+#cursor {
+  position: fixed; top: 0; left: 0; pointer-events: none; z-index: 9999;
+  mix-blend-mode: difference;
+}
+#cursor .dot {
+  width: 8px; height: 8px; background: #fff; border-radius: 50%;
+  transform: translate(-50%, -50%);
+  transition: transform 0.1s;
+}
+#cursor .ring {
+  position: absolute; top: 0; left: 0;
+  width: 32px; height: 32px; border: 1.5px solid rgba(255,255,255,0.5);
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  transition: transform 0.35s cubic-bezier(0.23, 1, 0.32, 1), width 0.3s, height 0.3s;
+}
+body:has(a:hover) #cursor .ring,
+body:has(button:hover) #cursor .ring { width: 48px; height: 48px; }
+
+/* ── SIDEBAR NAV ── */
+#sidebar {
+  position: fixed; left: 0; top: 0; bottom: 0;
+  width: var(--nav-w);
+  background: var(--sidebar-bg);
+  border-right: 1px solid var(--border);
+  display: flex; flex-direction: column;
+  z-index: 100;
+  padding: 40px 0 32px;
+  transition: background 0.3s;
+}
+.sidebar-logo {
+  padding: 0 28px 40px;
+  border-bottom: 1px solid var(--border);
+  margin-bottom: 32px;
+}
+.sidebar-logo img { width: 140px; }
+
+.nav-links { flex: 1; overflow-y: auto; padding: 0 12px; }
+.nav-links::-webkit-scrollbar { width: 3px; }
+.nav-links::-webkit-scrollbar-thumb { background: rgba(0,0,0,0.1); border-radius: 2px; }
+
+.nav-item {
+  display: flex; align-items: center; gap: 12px;
+  padding: 10px 16px;
+  border-radius: 6px;
+  font-size: 13px;
+  font-weight: 400;
+  color: var(--text-muted);
+  text-decoration: none;
+  transition: all 0.2s;
+  margin-bottom: 2px;
+}
+.nav-item:hover { background: rgba(16,94,246,0.05); color: var(--text); }
+.nav-item.active { background: rgba(16,94,246,0.1); color: var(--blue); }
+.nav-num { font-size: 10px; opacity: 0.5; min-width: 18px; }
+
+.sidebar-footer {
+  padding: 20px 28px 0;
+  border-top: 1px solid var(--border);
+  font-size: 11px; color: var(--gray-600);
+}
+
+/* ── MAIN CONTENT ── */
+#main { margin-left: var(--nav-w); }
+
+/* ── SECTIONS ── */
+.section {
+  padding: 120px 80px;
+  max-width: 1200px;
+  border-bottom: 1px solid var(--border);
+}
+.sec-header { margin-bottom: 60px; }
+.sec-num { color: var(--blue); font-weight: 700; font-size: 12px; letter-spacing: 0.2em; text-transform: uppercase; margin-bottom: 12px; display: block; }
+.sec-title { font-size: 64px; font-weight: 700; letter-spacing: -0.03em; margin-bottom: 24px; line-height: 1; }
+.sec-desc { color: var(--text-muted); font-size: 18px; max-width: 700px; font-weight: 300; }
+
+/* ── TABLES ── */
+.data-table { width: 100%; border-collapse: collapse; margin: 32px 0; font-size: 14px; }
+.data-table th { text-align: left; padding: 16px; border-bottom: 1px solid var(--border); color: var(--gray-600); font-weight: 700; text-transform: uppercase; font-size: 10px; letter-spacing: 0.1em; }
+.data-table td { padding: 16px; border-bottom: 1px solid var(--border); }
+
+/* ── GRID SYSTEM ── */
+.grid-spec { display: grid; grid-template-columns: repeat(2, 1fr); gap: 40px; margin-top: 40px; }
+.grid-card { background: var(--card-bg); padding: 32px; border-radius: 8px; transition: background 0.3s; }
+.grid-card h4 { margin-bottom: 16px; font-size: 14px; color: var(--blue); }
+.grid-card p { font-size: 13px; color: var(--text-muted); }
+
+/* ── COLOR PALETTE ── */
+.palette-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px; }
+.color-swatch { background: var(--card-bg); border-radius: 8px; overflow: hidden; transition: background 0.3s; border:1px solid var(--border); }
+.color-box { height: 120px; }
+.color-info { padding: 20px; background: var(--card-bg); transition: background 0.3s; }
+.color-name { font-weight: 700; font-size: 14px; display: block; margin-bottom: 4px; }
+.color-hex { font-size: 12px; color: var(--gray-600); font-family: monospace; }
+
+/* ── ASSETS ── */
+.asset-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1px; background: var(--border); }
+.asset-item { background: var(--bg); height: 280px; display: flex; align-items: center; justify-content: center; border-radius: 8px; border:1px solid var(--border); overflow: hidden; margin-bottom: 20px; }
+.asset-item img { max-width: 60%; height: auto; }
+.asset-label { font-size: 10px; color: var(--gray-600); text-transform: uppercase; letter-spacing: 0.1em; display: block; text-align: center; }
+
+/* ── PROGRESS BAR ── */
+#progress { position: fixed; top: 0; left: var(--nav-w); right: 0; height: 2px; background: var(--blue); transform-origin: left; transform: scaleX(0); z-index: 200; }
+
+/* ── REVEAL ANIM ── */
+.reveal { opacity: 0; transform: translateY(30px); transition: all 0.8s cubic-bezier(0.2, 1, 0.2, 1); }
+.reveal.visible { opacity: 1; transform: translateY(0); }
+
+/* ── COVER ── */
+#cover { height: 100vh; display: flex; flex-direction: column; justify-content: flex-end; padding: 100px 80px; position: relative; overflow: hidden; background: var(--sidebar-bg); transition: background 0.3s; }
+.cover-ornament { position: absolute; right: 12%; top: 50%; transform: translateY(-50%); height: 80%; opacity: 0.8; pointer-events: none; z-index: 1; }
+.cover-title { font-size: min(15vw, 130px); font-weight: 700; line-height: 0.85; letter-spacing: -0.04em; position: relative; z-index: 2; margin-bottom: 20px; }
+.cover-title em { font-style: normal; color: var(--blue); }
+.cover-meta { margin-top: 60px; display: flex; justify-content: space-between; align-items: flex-end; position: relative; z-index: 2; width: 100%; }
+.cover-tagline { font-size: clamp(16px, 2vw, 20px); font-weight: 300; max-width: 500px; color: var(--text-muted); }
+
+/* ── INCORRENTS BOXES ── */
+.dont-box { background: var(--sidebar-bg); padding: 30px; border-radius: 8px; border: 1px solid rgba(244,67,54,0.2); }
+
+/* ── RESPONSIVENESS ── */
+#menu-toggle { display: none; }
+
+@media (max-width: 1024px) {
+  :root { --nav-w: 0px; }
+  
+  body { overflow-x: hidden; width: 100%; position: relative; }
+  
+  #sidebar { 
+    width: 100%; height: auto; bottom: auto; border-right: none; 
+    border-bottom: 1px solid var(--border); padding: 15px 20px;
+    flex-direction: row; align-items: center; justify-content: space-between;
+    background: var(--bg); position: fixed; top: 0; left: 0; right: 0;
+  }
+  .sidebar-logo { padding: 0; border: none; margin: 0; }
+  .sidebar-logo img { width: 90px; }
+  .nav-links, .theme-toggle, .sidebar-footer { display: none; }
+  
+  #main { margin-left: 0; padding-top: 70px; width: 100%; overflow-x: hidden; }
+  .section { padding: 60px 24px; width: 100%; }
+  
+  .sec-title { font-size: clamp(32px, 8vw, 48px); }
+  .cover-title { font-size: clamp(40px, 12vw, 80px); line-height: 0.9; }
+  
+  .cover-ornament { 
+    height: 50vh; right: -20%; top: 40%; opacity: 0.4;
+    transition: none; 
+  }
+  
+  .cover-meta { flex-direction: column; align-items: flex-start; gap: 30px; margin-top: 30px; }
+  .cover-tagline { font-size: 16px; margin-bottom: 20px; }
+
+  .asset-grid, .palette-grid, .grid-spec { grid-template-columns: 1fr; gap: 20px; }
+  .asset-item { height: 220px; padding: 40px; }
+  
+  /* Mobile Menu Button */
+  #menu-toggle { 
+    display: block; background: var(--blue); color: #fff; border: none;
+    padding: 10px 18px; border-radius: 6px; font-weight: 700; font-size: 11px;
+    text-transform: uppercase; letter-spacing: 0.1em; cursor: pointer;
+  }
+}
+
+@media (max-width: 650px) {
+  .section { padding: 50px 20px; }
+  .sec-header { margin-bottom: 40px; }
+  .data-table { display: block; width: 100%; overflow-x: auto; white-space: nowrap; -webkit-overflow-scrolling: touch; }
+  .data-table td, .data-table th { min-width: 120px; }
+  
+  .grid-card { padding: 24px; }
+  
+  .cover-ornament { right: -30%; height: 40vh; }
+}
+
+</style>
+</head>
+<body>
+
+<div id="cursor"><div class="dot"></div><div class="ring"></div></div>
+<div id="progress"></div>
+
+<nav id="sidebar">
+  <div class="sidebar-logo">
+    <img src="Identidade visual pagelabs V2 final/SVG/pagelabs_colorido_claro.svg" alt="Pagelabs" class="logo-dark">
+    <img src="Identidade visual pagelabs V2 final/SVG/pagelabs_colorido_escuro.svg" alt="Pagelabs" class="logo-light">
+  </div>
+  <button id="menu-toggle">Menu</button>
+  <div class="theme-toggle">
+    <button class="theme-btn active" id="btn-dark">Dark</button>
+    <button class="theme-btn" id="btn-light">Light</button>
+  </div>
+  <div class="nav-links">
+    <a href="#cover" class="nav-item active"><span class="nav-num">00</span> Introdução</a>
+    <a href="#manifesto" class="nav-item"><span class="nav-num">01</span> Manifesto</a>
+    <a href="#logotipo" class="nav-item"><span class="nav-num">02</span> Logotipo</a>
+    <a href="#cores" class="nav-item"><span class="nav-num">03</span> Paleta de Cores</a>
+    <a href="#tipografia" class="nav-item"><span class="nav-num">04</span> Tipografia</a>
+    <a href="#grade" class="nav-item"><span class="nav-num">05</span> Espaço & Grade</a>
+    <a href="#tom" class="nav-item"><span class="nav-num">06</span> Tom de Voz</a>
+    <a href="#digital" class="nav-item"><span class="nav-num">07</span> Aplicações</a>
+    <a href="#incorretos" class="nav-item"><span class="nav-num">08</span> Incorretos</a>
+  </div>
+  <div class="sidebar-footer">
+    Brand Identity Guidelines<br>v1.0 — 2025 · Confidencial
+  </div>
+</nav>
+
+<div id="main">
+  <!-- 00 COVER -->
+  <section id="cover">
+    <img src="Identidade visual pagelabs V2 final/SVG/pagelabs_ornamento.svg" class="cover-ornament" alt="">
+    <div class="cover-kicker" style="font-size:12px; color:var(--blue); font-weight:700; text-transform:uppercase; letter-spacing:0.2em; margin-bottom:20px; position:relative; z-index:2;">Marketing & IA Agency</div>
+    <h1 class="cover-title">Brand<br>Identity<br><em>Guidelines.</em></h1>
+    <div class="cover-meta">
+      <p class="cover-tagline">Este documento estabelece os padrões visuais da Pagelabs para toda comunicação digital e impressa.</p>
+      <div style="text-align:right">
+        <div style="font-size:10px; color:var(--gray-600); margin-bottom:8px;">VERSÃO</div>
+        <div style="font-size:48px; font-weight:700; opacity:0.1">1.0</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 01 MANIFESTO -->
+  <section class="section" id="manifesto">
+    <div class="sec-header reveal">
+      <span class="sec-num">01 — Manifesto</span>
+      <h2 class="sec-title">Filosofia e<br>Valores.</h2>
+      <p class="sec-desc">A Pagelabs opera na fronteira entre criatividade estratégica e inovação computacional.</p>
+    </div>
+
+    <div class="reveal" style="margin-bottom: 80px;">
+      <h3 style="color:var(--blue); font-size:14px; text-transform:uppercase; margin-bottom:24px;">Quem Somos</h3>
+      <p style="font-size:24px; font-weight:300; line-height:1.5; color:var(--white)">Fundada na convicção de que design de excelência e tecnologia de ponta são inseparáveis, entregamos experiências que posicionam nossos clientes no mais alto padrão internacional.</p>
+    </div>
+
+    <div class="grid-spec reveal">
+      <div class="grid-card">
+        <h4>Nossa Visão</h4>
+        <p>Ser o Benchmark global em design e IA aplicada ao marketing, convergindo inteligência artificial e design humanista.</p>
+      </div>
+      <div class="grid-card">
+        <h4>Nossa Missão</h4>
+        <p>Promover soluções que integram marketing estratégico e IA, gerando valor real e duradouro para nossos clientes.</p>
+      </div>
+    </div>
+
+    <div style="margin-top:80px;" class="reveal">
+      <h3 style="color:var(--blue); font-size:14px; text-transform:uppercase; margin-bottom:40px;">Valores Fundamentais</h3>
+      <div style="display:grid; grid-template-columns: repeat(2, 1fr); gap: 40px;">
+        <div style="font-size:15px;"><span style="color:var(--blue); margin-right:10px;">—</span> Excelência formal: padrões internacionais em cada entrega</div>
+        <div style="font-size:15px;"><span style="color:var(--blue); margin-right:10px;">—</span> Clareza: comunicação sem ambiguidade, design sem ruído</div>
+        <div style="font-size:15px;"><span style="color:var(--blue); margin-right:10px;">—</span> Inovação disciplinada: tecnologia a serviço do propósito</div>
+        <div style="font-size:15px;"><span style="color:var(--blue); margin-right:10px;">—</span> Rigor tipográfico: texto como elemento de design primário</div>
+        <div style="font-size:15px;"><span style="color:var(--blue); margin-right:10px;">—</span> Impacto mensurável: resultados que justificam a ambição</div>
+        <div style="font-size:15px;"><span style="color:var(--blue); margin-right:10px;">—</span> Integridade visual: consistência absoluta</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 02 LOGOTIPO -->
+  <section class="section" id="logotipo">
+    <div class="sec-header reveal">
+      <span class="sec-num">02 — Logotipo</span>
+      <h2 class="sec-title">A Marca.</h2>
+      <p class="sec-desc">Um símbolo de 'P' abstrato e uma página dobrada — o rigor construtivista encontra o universo digital.</p>
+    </div>
+
+    <div class="asset-grid reveal" style="background:transparent; gap:40px;">
+      <div style="flex:1">
+        <div class="asset-item">
+          <img src="Identidade visual pagelabs V2 final/SVG/pagelabs_colorido_claro.svg" alt="" class="logo-dark">
+          <img src="Identidade visual pagelabs V2 final/SVG/pagelabs_colorido_escuro.svg" alt="" class="logo-light">
+        </div>
+        <div class="asset-label">Versão Adaptativa</div>
+      </div>
+      <div style="flex:1">
+        <div class="asset-item" style="background:var(--blue); border:none;">
+          <img src="Identidade visual pagelabs V2 final/SVG/pagelabs_colorido_claro.svg" alt="" style="filter: brightness(0) invert(1);">
+        </div>
+        <div class="asset-label">Negatíva Branca (Alto Contraste)</div>
+      </div>
+    </div>
+
+    <div class="reveal" style="margin-top:80px;">
+      <h3 style="color:var(--blue); font-size:14px; text-transform:uppercase; margin-bottom:24px;">Área de Proteção & Tamanhos</h3>
+      <p style="font-size:16px; color:var(--gray-400); max-width:600px; margin-bottom:40px;">Área mínima de proteção = altura do símbolo (x) em todos os quatro lados. Nenhum elemento deve invadir esta área.</p>
+      <table class="data-table">
+        <thead>
+          <tr><th>Formato</th><th>Digital (PX)</th><th>Impresso (MM)</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Logotipo completo</td><td>Mín. 80px</td><td>Mín. 25mm</td></tr>
+          <tr><td>Símbolo isolado</td><td>Mín. 24px</td><td>Mín. 8mm</td></tr>
+          <tr><td>Favicon / App icon</td><td>16px – 512px</td><td>N/A</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- 03 CORES -->
+  <section class="section" id="cores">
+    <div class="sec-header reveal">
+      <span class="sec-num">03 — Paleta de Cores</span>
+      <h2 class="sec-title">Cromia Tecnológica.</h2>
+    </div>
+
+    <div class="palette-grid reveal">
+      <div class="color-swatch">
+        <div class="color-box" style="background:#105EF6"></div>
+        <div class="color-info"><span class="color-name">Pagelabs Blue</span><span class="color-hex">#105EF6</span></div>
+      </div>
+      <div class="color-swatch">
+        <div class="color-box" style="background:#202020"></div>
+        <div class="color-info"><span class="color-name">Pagelabs Black</span><span class="color-hex">#202020</span></div>
+      </div>
+      <div class="color-swatch">
+        <div class="color-box" style="background:#FFFFFF; border-bottom:1px solid var(--border)"></div>
+        <div class="color-info"><span class="color-name">Pagelabs White</span><span class="color-hex">#FFFFFF</span></div>
+      </div>
+    </div>
+
+    <div class="reveal" style="margin-top:80px;">
+      <h3 style="color:var(--blue); font-size:14px; text-transform:uppercase; margin-bottom:24px;">Especificações Técnicas</h3>
+      <table class="data-table">
+        <thead>
+          <tr><th>Cores Suporte</th><th>HEX</th><th>RGB</th><th>USO</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Dark Gray</td><td>#6B6B6B</td><td>107/107/107</td><td>Texto Auxiliar</td></tr>
+          <tr><td>Mid Gray</td><td>#D0D0D0</td><td>208/208/208</td><td>Bordas / Divisores</td></tr>
+          <tr><td>Blue Dark</td><td>#0A3DB8</td><td>10/61/184</td><td>Hover States</td></tr>
+          <tr><td>Blue Light</td><td>#4D8BF8</td><td>77/139/248</td><td>Gradientes</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- 04 TIPOGRAFIA -->
+  <section class="section" id="tipografia">
+    <div class="sec-header reveal">
+      <span class="sec-num">04 — Tipografia</span>
+      <h2 class="sec-title">DM Sans &<br>Arial.</h2>
+    </div>
+
+    <div class="reveal">
+      <div style="font-size:120px; font-weight:700; margin-bottom:40px; line-height:0.8; letter-spacing: -0.05em">DM<br>SANS</div>
+      <div style="display:grid; grid-template-columns:1fr 1fr; gap:60px;">
+        <div>
+          <h4 style="color:var(--blue); margin-bottom:16px;">Fonte de Trabalho</h4>
+          <p style="font-size:14px; color:var(--gray-400)">Geométrica e humanista, combina neutralidade funcional com personalidade contemporânea.</p>
+        </div>
+        <div>
+          <h4 style="color:var(--blue); margin-bottom:16px;">Fonte Alternativa</h4>
+          <p style="font-size:14px; color:var(--gray-400)">Utilizar Arial para documentos de escritório, e-mail e sistemas legados.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="reveal" style="margin-top:80px;">
+      <h3 style="color:var(--blue); font-size:14px; text-transform:uppercase; margin-bottom:24px;">Hierarquia Visual</h3>
+      <table class="data-table">
+        <thead>
+          <tr><th>Estilo</th><th>Especificação</th><th>Uso</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Display / H1</td><td>72–96pt / Bold</td><td>Títulos e Heroes</td></tr>
+          <tr><td>Heading / H2</td><td>40–56pt / Bold</td><td>Subtítulos</td></tr>
+          <tr><td>Body</td><td>14–16pt / Regular</td><td>Texto corrido</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- 05 GRADE -->
+  <section class="section" id="grade">
+    <div class="sec-header reveal">
+      <span class="sec-num">05 — Espaço & Grade</span>
+      <h2 class="sec-title">Estrutura<br>Modular.</h2>
+    </div>
+
+    <div class="reveal">
+      <h3 style="color:var(--blue); font-size:14px; text-transform:uppercase; margin-bottom:24px;">Unidade Base 8px</h3>
+      <div style="display:flex; gap:10px; align-items:flex-end; margin-bottom:40px;">
+        <div style="width:8px; height:8px; background:var(--blue)"></div>
+        <div style="width:16px; height:16px; background:var(--blue)"></div>
+        <div style="width:24px; height:24px; background:var(--blue)"></div>
+        <div style="width:32px; height:32px; background:var(--blue)"></div>
+        <div style="width:48px; height:48px; background:var(--blue)"></div>
+      </div>
+      <table class="data-table">
+        <thead>
+          <tr><th>Dispositivo</th><th>Colunas</th><th>Gutter</th><th>Margem</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Mobile</td><td>4</td><td>16px</td><td>16px</td></tr>
+          <tr><td>Tablet</td><td>8</td><td>20px</td><td>32px</td></tr>
+          <tr><td>Desktop</td><td>12</td><td>24px</td><td>48px</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- 06 TOM DE VOZ -->
+  <section class="section" id="tom">
+    <div class="sec-header reveal">
+      <span class="sec-num">06 — Tom de Voz</span>
+      <h2 class="sec-title">Preciso e<br>Ambicioso.</h2>
+    </div>
+
+    <div class="voice-attrs reveal">
+      <div style="display:grid; grid-template-columns:1fr 1fr; gap:40px;">
+        <div class="grid-card">
+          <h4>Atributos</h4>
+          <ul style="list-style:none; font-size:14px; color:var(--gray-400)">
+            <li style="margin-bottom:12px;"><strong>— Preciso:</strong> Sem redundâncias.</li>
+            <li style="margin-bottom:12px;"><strong>— Inteligente:</strong> Respeito ao leitor.</li>
+            <li style="margin-bottom:12px;"><strong>— Confiante:</strong> Afirmação com convicção.</li>
+            <li><strong>— Humano:</strong> Pessoas por trás de tudo.</li>
+          </ul>
+        </div>
+        <div class="grid-card">
+          <h4>Nomenclatura</h4>
+          <p style="margin-bottom:12px;"><strong>Correto:</strong> Pagelabs</p>
+          <p style="color:var(--gray-600); font-size:12px;">Nunca use: Page Labs, PAGELABS, page labs.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 07 DIGITAL -->
+  <section class="section" id="digital">
+    <div class="sec-header reveal">
+      <span class="sec-num">07 — Aplicações</span>
+      <h2 class="sec-title">Presença On-line.</h2>
+    </div>
+    
+    <div class="reveal">
+      <h3 style="color:var(--blue); font-size:14px; text-transform:uppercase; margin-bottom:24px;">Redes Sociais</h3>
+      <table class="data-table">
+        <thead>
+          <tr><th>Formato</th><th>Dimensão</th><th>Safe Zone</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Feed Square</td><td>1080×1080px</td><td>80px all sides</td></tr>
+          <tr><td>Stories</td><td>1080×1920px</td><td>150px top/bottom</td></tr>
+          <tr><td>Avatar Profile</td><td>400×400px</td><td>Símbolo centrado</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="grid-card reveal" style="margin-top:40px;">
+      <h4 style="text-transform:uppercase">Assinatura de E-mail</h4>
+      <p>Fonte Arial 12pt, Nome em Negrito #202020. Cargo em cor #6B6B6B. Links em #105EF6. Sem imagens inline.</p>
+    </div>
+  </section>
+
+  <!-- 08 INCORRETOS -->
+  <section class="section" id="incorretos">
+    <div class="sec-header reveal">
+      <span class="sec-num">08 — Incorretos</span>
+      <h2 class="sec-title">Restrições.</h2>
+      <p class="sec-desc">A força de uma marca está tanto no que ela faz quanto no que ela proíbe.</p>
+    </div>
+    <div style="display:grid; grid-template-columns:repeat(3, 1fr); gap:20px;" class="reveal">
+      <div class="dont-box">
+        <h5 style="color:#f44336; margin-bottom:16px; font-size:10px; text-transform:uppercase; letter-spacing:0.1em;">01. Deformação</h5>
+        <div style="height:100px; display:flex; align-items:center; justify-content:center; background:rgba(0,0,0,0.03); border-radius:4px; margin-bottom:16px; overflow:hidden; padding:20px;">
+          <img src="Identidade visual pagelabs V2 final/SVG/pagelabs_colorido_claro.svg" style="width:140px; transform:scaleY(0.4); opacity:0.3;" class="logo-dark">
+          <img src="Identidade visual pagelabs V2 final/SVG/pagelabs_colorido_escuro.svg" style="width:140px; transform:scaleY(0.4); opacity:0.3;" class="logo-light">
+        </div>
+        <p style="font-size:11px; color:var(--text-muted); line-height:1.4;">Nunca achatar ou esticar o logotipo. Mantenha sempre as proporções originais.</p>
+      </div>
+
+      <div class="dont-box">
+        <h5 style="color:#f44336; margin-bottom:16px; font-size:10px; text-transform:uppercase; letter-spacing:0.1em;">02. Contraste</h5>
+        <div style="height:100px; display:flex; align-items:center; justify-content:center; background:#4D8BF8; border-radius:4px; margin-bottom:16px; padding:20px;">
+          <img src="Identidade visual pagelabs V2 final/SVG/pagelabs_colorido_escuro.svg" style="width:100px; opacity:0.4;" class="logo-dark">
+          <img src="Identidade visual pagelabs V2 final/SVG/pagelabs_colorido_escuro.svg" style="width:100px; opacity:0.4;" class="logo-light">
+        </div>
+        <p style="font-size:11px; color:var(--text-muted); line-height:1.4;">Não aplicar o logotipo sobre fundos que comprometam a legibilidade ou contraste.</p>
+      </div>
+
+      <div class="dont-box">
+        <h5 style="color:#f44336; margin-bottom:16px; font-size:10px; text-transform:uppercase; letter-spacing:0.1em;">03. Tipografia</h5>
+        <div style="height:100px; display:flex; align-items:center; justify-content:center; background:rgba(0,0,0,0.03); border-radius:4px; margin-bottom:16px; font-family:'Comic Sans MS', cursive; font-size:18px; color:#f44336; opacity:0.4; text-align:center; padding:10px;">
+          Pagelabs Agency
+        </div>
+        <p style="font-size:11px; color:var(--text-muted); line-height:1.4;">Não utilizar fontes que fujam do sistema tipográfico estabelecido (DM Sans/Arial).</p>
+      </div>
+    </div>
+  </section>
+
+  <footer style="padding:100px 80px; background:#121212; text-align:center;">
+    <p style="font-size:14px; color:var(--gray-600); margin-bottom:20px;">Dúvidas? Entre em contato com o time de design.</p>
+    <a href="https://pagelabs.com.br" style="color:var(--blue); font-weight:700; text-decoration:none; font-size:24px;">pagelabs.com.br</a>
+  </footer>
+</div>
+
+<script>
+  // MOBILE MENU
+  const menuToggle = document.getElementById('menu-toggle');
+  const navLinks = document.querySelector('.nav-links');
+  const themeToggle = document.querySelector('.theme-toggle');
+  
+  menuToggle.onclick = () => {
+    const isVisible = getComputedStyle(navLinks).display !== 'none';
+    navLinks.style.display = isVisible ? 'none' : 'block';
+    themeToggle.style.display = isVisible ? 'none' : 'flex';
+    if (!isVisible) {
+      navLinks.style.position = 'absolute';
+      navLinks.style.top = '80px';
+      navLinks.style.left = '0';
+      navLinks.style.width = '100%';
+      navLinks.style.background = 'var(--bg)';
+      navLinks.style.borderBottom = '1px solid var(--border)';
+      navLinks.style.padding = '20px';
+      
+      themeToggle.style.position = 'absolute';
+      themeToggle.style.top = '140px'; 
+      // Offset so it doesn't overlap links
+    }
+  };
+
+  // THEME TOGGLE
+  const btnDark = document.getElementById('btn-dark');
+  const btnLight = document.getElementById('btn-light');
+  
+  btnDark.onclick = () => {
+    document.body.classList.remove('light-mode');
+    btnDark.classList.add('active');
+    btnLight.classList.remove('active');
+  };
+  btnLight.onclick = () => {
+    document.body.classList.add('light-mode');
+    btnLight.classList.add('active');
+    btnDark.classList.remove('active');
+  };
+
+  // CURSOR
+  const ring = document.querySelector('#cursor .ring');
+  const dot = document.querySelector('#cursor .dot');
+  let mouseX = 0, mouseY = 0, ringX = 0, ringY = 0;
+  window.addEventListener('mousemove', e => {
+    mouseX = e.clientX; mouseY = e.clientY;
+    dot.style.transform = `translate(${mouseX}px, ${mouseY}px)`;
+  });
+  function animateRing() {
+    ringX += (mouseX - ringX) * 0.15;
+    ringY += (mouseY - ringY) * 0.15;
+    ring.style.transform = `translate(${ringX}px, ${ringY}px)`;
+    requestAnimationFrame(animateRing);
+  }
+  animateRing();
+
+  // INTERSECTION OBSERVER for sidebar and reveal
+  const reveals = document.querySelectorAll('.reveal');
+  const navItems = document.querySelectorAll('.nav-item');
+  const prog = document.querySelector('#progress');
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        if (entry.target.classList.contains('section') || entry.target.id === 'cover') {
+          navItems.forEach(item => item.classList.remove('active'));
+          const targetItem = document.querySelector(`.nav-item[href="#${entry.target.id}"]`);
+          if (targetItem) targetItem.classList.add('active');
+        }
+      }
+    });
+  }, { threshold: 0.1 });
+
+  reveals.forEach(r => observer.observe(r));
+  document.querySelectorAll('section, #cover').forEach(s => observer.observe(s));
+
+  window.addEventListener('scroll', () => {
+    const s = window.scrollY;
+    const h = document.documentElement.scrollHeight - window.innerHeight;
+    prog.style.transform = `scaleX(${s/h})`;
+  });
+</script>
+</body>
+</html>
