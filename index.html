@@ -133,8 +133,8 @@ body.dark-mode .logo-light { display: none; }
 body:has(a:hover) #cursor .ring,
 body:has(button:hover) #cursor .ring { width: 48px; height: 48px; }
 
-@media (max-width: 1024px) {
-  #cursor { display: none !important; }
+@media (max-width: 1024px), (pointer: coarse) {
+  #cursor { display: none !important; opacity: 0 !important; visibility: hidden !important; }
   body { cursor: auto !important; }
 }
 
@@ -510,7 +510,7 @@ body:has(button:hover) #cursor .ring { width: 48px; height: 48px; }
       <h1 class="cover-title">Brand Identity <em>Guidelines.</em></h1>
       <div class="cover-meta">
         <p class="cover-tagline">Padrões visuais e estratégicos para a construção de uma marca forte, consistente e inovadora.</p>
-        <div class="cover-version">V1.0 — 2026</div>
+        <div class="cover-version">V1.2 — 2026</div>
       </div>
     </div>
   </section>
