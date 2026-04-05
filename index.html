@@ -24,7 +24,8 @@
 </script>
 <style>
 /* ── RESET & BASE ── */
-*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+* { box-sizing: border-box; }
+*, *::before, *::after { margin: 0; padding: 0; }
 :root {
   --blue: #105EF6;
   --blue-dark: #0A3DB8;
@@ -184,7 +185,7 @@ body:has(button:hover) #cursor .ring { width: 48px; height: 48px; }
 }
 
 /* ── MAIN CONTENT ── */
-#main { margin-left: var(--nav-w); }
+#main { margin-left: var(--nav-w); overflow-x: hidden; }
 
 /* ── SECTIONS ── */
 .section {
@@ -201,8 +202,16 @@ body:has(button:hover) #cursor .ring { width: 48px; height: 48px; }
 .data-table { width: 100%; border-collapse: collapse; margin: 64px 0; font-size: 14px; table-layout: auto; }
 .data-table th { text-align: left; padding: 16px; border-bottom: 1px solid var(--border); color: var(--gray-600); font-weight: 700; text-transform: uppercase; font-size: 10px; letter-spacing: 0.1em; }
 .data-table td { padding: 16px; border-bottom: 1px solid var(--border); color: var(--text); line-height: 1.5; }
-.data-table-container { width: 100%; overflow-x: auto; -webkit-overflow-scrolling: touch; margin: 64px 0; border: 1px solid var(--border); border-radius: 8px; }
-.data-table-container .data-table { margin: 0; border: none; }
+.data-table-container { 
+  width: 100%; 
+  max-width: calc(100vw - (2 * var(--page-margin)));
+  overflow-x: auto; 
+  -webkit-overflow-scrolling: touch; 
+  margin: 64px 0; 
+  border: 1px solid var(--border); 
+  border-radius: 8px; 
+}
+.data-table-container .data-table { margin: 0; border: none; width: 100%; min-width: 600px; }
 
 /* ── GRID SYSTEM ── */
 .grid-spec { display: grid; grid-template-columns: repeat(2, 1fr); gap: 40px; margin-top: 64px; }
@@ -453,9 +462,13 @@ body:has(button:hover) #cursor .ring { width: 48px; height: 48px; }
   }
   
   .scroll-nav { display: flex; width: 100%; justify-content: center; margin-top: 24px; gap: 12px; }
-  .data-table-container { margin: 24px 0; }
+  .data-table-container { 
+    margin: 24px 0; 
+    max-width: calc(100vw - (2 * var(--page-margin)));
+  }
   .data-table { font-size: 12px; }
-  .data-table th, .data-table td { padding: 12px 16px; min-width: 120px; }
+  .data-table th, .data-table td { padding: 12px 16px; min-width: 100px; }
+  .data-table-container .data-table { min-width: 450px; }
 
   .type-showcase-title { font-size: clamp(48px, 15vw, 100px) !important; line-height: 0.9 !important; }
   .type-grid { grid-template-columns: 1fr !important; gap: 32px !important; }
