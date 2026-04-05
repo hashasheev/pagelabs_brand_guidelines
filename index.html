@@ -3,11 +3,25 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Pagelabs — Brand Identity Guidelines 2025</title>
+<title>Pagelabs — Brand Identity Guidelines 2026</title>
+<meta name="color-scheme" content="light">
+<meta name="description" content="Diretrizes de identidade visual e estratégica da Pagelabs para 2026.">
+<meta property="og:title" content="Pagelabs — Brand Identity Guidelines 2026">
+<meta property="og:description" content="Padrões visuais e estratégicos para a construção de uma marca forte, consistente e inovadora.">
+<meta property="og:type" content="website">
+<meta property="og:image" content="Identidade visual pagelabs V2 final/SVG/pagelabs_simbolo_azul.svg">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Pagelabs — Brand Identity Guidelines 2026">
+<meta name="twitter:description" content="Padrões visuais e estratégicos da Pagelabs.">
 <link rel="icon" type="image/svg+xml" href="Identidade visual pagelabs V2 final/SVG/pagelabs_simbolo_azul.svg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,300;0,400;0,500;0,700&display=swap" rel="stylesheet">
+<script>
+  // Force light mode immediately
+  document.documentElement.style.backgroundColor = '#FFFFFF';
+  document.documentElement.classList.remove('dark-mode');
+</script>
 <style>
 /* ── RESET & BASE ── */
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -15,25 +29,25 @@
   --blue: #105EF6;
   --blue-dark: #0A3DB8;
   --blue-light: #4D8BF8;
+  --bg: #FFFFFF;
+  --sidebar-bg: #F8F9FA;
+  --card-bg: #F1F3F5;
+  --text: #1A1A1A;
+  --text-muted: #6B6B6B;
+  --border: rgba(0,0,0,0.08);
+  --gray-600: #868E96;
+  --font: 'DM Sans', sans-serif;
+  --font-brand: 'Britti Sans', sans-serif;
+  --nav-w: 280px;
+}
+
+body.dark-mode {
   --bg: #202020;
   --sidebar-bg: #1a1a1a;
   --card-bg: #262626;
   --text: #FFFFFF;
   --text-muted: #AAAAAA;
   --border: rgba(255,255,255,0.06);
-  --gray-600: #6B6B6B;
-  --font: 'DM Sans', sans-serif;
-  --font-brand: 'Britti Sans', sans-serif;
-  --nav-w: 280px;
-}
-
-body.light-mode {
-  --bg: #FFFFFF;
-  --sidebar-bg: #F4F4F4;
-  --card-bg: #EAEAEA;
-  --text: #202020;
-  --text-muted: #6B6B6B;
-  --border: rgba(0,0,0,0.06);
 }
 
 html, body { 
@@ -45,8 +59,8 @@ html, body {
 }
 body {
   font-family: var(--font);
-  background: var(--bg);
-  color: var(--text);
+  background: var(--bg) !important;
+  color: var(--text) !important;
   cursor: none;
   line-height: 1.6;
   transition: background 0.3s, color 0.3s;
@@ -67,11 +81,37 @@ body {
 .theme-btn:hover { border-color: var(--blue); color: var(--text); }
 .theme-btn.active { background: var(--blue); color: #fff; border-color: var(--blue); }
 
+.floating-toggle {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  z-index: 1002;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: var(--bg);
+  border: 1px solid var(--border);
+  color: var(--text);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.15);
+  transition: all 0.3s cubic-bezier(0.2, 1, 0.2, 1);
+  font-size: 18px;
+}
+.floating-toggle:hover {
+  transform: scale(1.1);
+}
+@media (min-width: 1025px) {
+  .floating-toggle { display: none; }
+}
+
 /* ── LOGO SWAP LOGIC ── */
-.logo-dark { display: block; }
-.logo-light { display: none; }
-body.light-mode .logo-dark { display: none; }
-body.light-mode .logo-light { display: block; }
+.logo-dark { display: none; }
+.logo-light { display: block; }
+body.dark-mode .logo-dark { display: block; }
+body.dark-mode .logo-light { display: none; }
 
 /* ── CUSTOM CURSOR ── */
 #cursor {
@@ -92,6 +132,11 @@ body.light-mode .logo-light { display: block; }
 }
 body:has(a:hover) #cursor .ring,
 body:has(button:hover) #cursor .ring { width: 48px; height: 48px; }
+
+@media (max-width: 1024px) {
+  #cursor { display: none !important; }
+  body { cursor: auto !important; }
+}
 
 /* ── SIDEBAR NAV ── */
 #sidebar {
@@ -170,6 +215,10 @@ body:has(button:hover) #cursor .ring { width: 48px; height: 48px; }
 .color-swatch { background: var(--card-bg); border-radius: 8px; overflow: hidden; transition: background 0.3s; border:1px solid var(--border); }
 .color-box { height: 120px; }
 .color-info { padding: 20px; background: var(--card-bg); transition: background 0.3s; }
+.cover-version { text-align: right; }
+@media (max-width: 1024px) {
+  .cover-version { text-align: center; }
+}
 .color-name { font-weight: 700; font-size: 14px; display: block; margin-bottom: 4px; }
 .color-hex { font-size: 12px; color: var(--gray-600); font-family: monospace; }
 
@@ -205,13 +254,51 @@ body:has(button:hover) #cursor .ring { width: 48px; height: 48px; }
 }
 
 /* ── COVER ── */
-#cover { height: 100vh; display: flex; flex-direction: column; justify-content: flex-end; padding: 100px 80px; position: relative; overflow: hidden; background: var(--sidebar-bg); transition: background 0.3s; }
-.cover-ornament { position: absolute; right: 12%; top: 50%; transform: translateY(-50%); height: 80%; opacity: 0.8; pointer-events: none; z-index: 1; }
-.cover-title { font-family: var(--font-brand); font-size: min(15vw, 130px); font-weight: 700; line-height: 0.85; letter-spacing: -0.04em; position: relative; z-index: 2; margin-bottom: 20px; }
+#cover { 
+  height: 100vh; 
+  display: flex; 
+  flex-direction: column; 
+  justify-content: center; 
+  padding: 80px; 
+  position: relative; 
+  overflow: hidden; 
+  background: var(--sidebar-bg); 
+  transition: background 0.3s; 
+}
+.cover-ornament { position: absolute; right: 8%; top: 50%; transform: translateY(-50%); height: 80%; opacity: 0.8; pointer-events: none; z-index: 1; }
+.cover-title { 
+  font-family: var(--font-brand); 
+  font-size: clamp(48px, 10vw, 120px); 
+  font-weight: 700; 
+  line-height: 0.9; 
+  letter-spacing: -0.04em; 
+  position: relative; 
+  z-index: 2; 
+  margin-bottom: 24px; 
+  max-width: 800px;
+}
 .cover-title em { font-style: normal; color: var(--blue); }
-.cover-meta { margin-top: 60px; display: flex; justify-content: space-between; align-items: flex-end; position: relative; z-index: 2; width: 100%; }
-.cover-tagline { font-size: clamp(16px, 2vw, 20px); font-weight: 300; max-width: 500px; color: var(--text-muted); }
-
+.cover-meta { 
+  margin-top: 80px; 
+  display: flex; 
+  flex-direction: column;
+  align-items: center; 
+  position: relative; 
+  z-index: 2; 
+  width: 100%; 
+  text-align: center;
+}
+.cover-tagline { font-size: 16px; font-weight: 400; max-width: 460px; color: var(--text-muted); line-height: 1.6; margin-bottom: 40px; }
+.cover-version { 
+  font-size: 10px; 
+  font-weight: 700; 
+  letter-spacing: 0.25em; 
+  color: var(--gray-600);
+  opacity: 0.5;
+  text-transform: uppercase;
+  border-top: 1px solid var(--border);
+  padding-top: 24px;
+}
 .dont-box { 
   background: var(--sidebar-bg); 
   padding: 30px; 
@@ -317,19 +404,27 @@ body:has(button:hover) #cursor .ring { width: 48px; height: 48px; }
   .nav-links, .theme-toggle, .sidebar-footer { display: none; }
   
   #main { margin-left: 0; padding-top: 70px; width: 100%; overflow-x: hidden; }
-  .section { padding: 60px 24px; width: 100%; }
+  .section { padding: 80px 24px; width: 100%; display: flex; flex-direction: column; align-items: center; text-align: center; }
+  .sec-header { margin-bottom: 40px; display: flex; flex-direction: column; align-items: center; }
+  .sec-desc { margin: 0 auto; text-align: center; }
+  .grid-spec { transform: none; width: 100%; }
   
-  .sec-title { font-size: clamp(32px, 8vw, 48px); }
-  .cover-title { font-size: clamp(40px, 12vw, 80px); line-height: 0.9; }
+  .sec-title { font-size: clamp(32px, 8vw, 48px); text-align: center; }
+  .cover-title { font-size: clamp(40px, 10vw, 72px); line-height: 1.0; text-align: center; margin: 0 auto 24px; }
+  
+  #cover { padding: 60px 24px; justify-content: center; align-items: center; min-height: 100vh; text-align: center; }
+  .cover-content { display: flex; flex-direction: column; align-items: center; width: 100%; }
+  .cover-meta { flex-direction: column; align-items: center; text-align: center; gap: 0; margin-top: 40px; }
+  .cover-version { margin: 0 auto; width: 100%; max-width: 200px; }
   
   .cover-ornament { 
-    height: 65vh; right: -10%; top: 50%; opacity: 0.4;
-    transform: translateY(-40%);
+    height: 35vh; right: 50%; top: 30%; opacity: 0.08;
+    transform: translate(50%, -50%);
     transition: none; 
   }
   
-  .asset-scroll { display: flex; overflow-x: auto; padding-bottom: 24px; scroll-snap-type: x mandatory; }
-  .asset-item { width: 340px; flex: 0 0 auto; scroll-snap-align: start; }
+  .asset-scroll { display: flex; overflow-x: auto; padding-bottom: 24px; scroll-snap-type: x mandatory; width: 100%; }
+  .asset-item { width: 300px; flex: 0 0 auto; scroll-snap-align: start; }
   
   .horizontal-scroll {
     display: flex;
@@ -339,16 +434,14 @@ body:has(button:hover) #cursor .ring { width: 48px; height: 48px; }
     scroll-behavior: smooth;
     scroll-snap-type: x mandatory;
     -webkit-overflow-scrolling: touch;
+    width: 100%;
   }
   .horizontal-scroll > * { 
     flex: 0 0 280px; 
     scroll-snap-align: start; 
   }
   
-  .asset-scroll { display: flex; overflow-x: auto; padding-bottom: 24px; scroll-snap-type: x mandatory; }
-  .asset-item { width: 340px; flex: 0 0 auto; scroll-snap-align: start; }
-
-  .scroll-nav { display: flex; }
+  .scroll-nav { display: flex; width: 100%; justify-content: center; }
   
   /* Mobile Menu Button */
   #menu-toggle { 
@@ -356,26 +449,27 @@ body:has(button:hover) #cursor .ring { width: 48px; height: 48px; }
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    order: 10;
   }
 }
 
 @media (max-width: 650px) {
-  .section { padding: 50px 20px; }
+  .section { padding: 60px 20px; }
   .sec-header { margin-bottom: 40px; }
   .data-table { display: block; width: 100%; overflow-x: auto; white-space: nowrap; -webkit-overflow-scrolling: touch; }
   .data-table td, .data-table th { min-width: 120px; }
   
-  .grid-card { padding: 24px; }
+  .grid-card { padding: 24px; text-align: left; }
   
-  .cover-ornament { right: -15%; height: 55vh; }
+  .cover-ornament { height: 40vh; }
 }
-
 </style>
 </head>
 <body>
 
 <div id="cursor"><div class="dot"></div><div class="ring"></div></div>
 <div id="progress"></div>
+<button id="floating-theme-toggle" class="floating-toggle">🌙</button>
 
 <nav id="sidebar">
   <div class="sidebar-logo">
@@ -403,7 +497,7 @@ body:has(button:hover) #cursor .ring { width: 48px; height: 48px; }
     <a href="#incorretos" class="nav-item"><span class="nav-num">08</span> Incorretos</a>
   </div>
   <div class="sidebar-footer">
-    Brand Identity Guidelines<br>v1.0 — 2025 · Confidencial
+    Brand Identity Guidelines<br>v1.2 — 2026 · Confidencial
   </div>
 </nav>
 
@@ -411,13 +505,12 @@ body:has(button:hover) #cursor .ring { width: 48px; height: 48px; }
   <!-- 00 COVER -->
   <section id="cover">
     <img src="Identidade visual pagelabs V2 final/SVG/pagelabs_ornamento.svg" class="cover-ornament" alt="">
-    <div class="cover-kicker" style="font-size:12px; color:var(--blue); font-weight:700; text-transform:uppercase; letter-spacing:0.2em; margin-bottom:20px; position:relative; z-index:2;">Marketing & Intelligence Agency</div>
-    <h1 class="cover-title">Brand<br>Identity<br><em>Guidelines.</em></h1>
-    <div class="cover-meta">
-      <p class="cover-tagline">Padrões visuais e estratégicos para a construção de uma marca forte, consistente e inovadora.</p>
-      <div style="text-align:right">
-        <div style="font-size:10px; color:var(--gray-600); margin-bottom:8px;">VERSÃO</div>
-        <div style="font-size:48px; font-weight:700; opacity:0.1">1.0</div>
+    <div class="cover-content" style="position:relative; z-index:2; width:100%;">
+      <div class="cover-kicker" style="font-size: clamp(10px, 2vw, 12px); color:var(--blue); font-weight:700; text-transform:uppercase; letter-spacing:0.3em; margin-bottom:24px;">Marketing & Intelligence Agency</div>
+      <h1 class="cover-title">Brand Identity <em>Guidelines.</em></h1>
+      <div class="cover-meta">
+        <p class="cover-tagline">Padrões visuais e estratégicos para a construção de uma marca forte, consistente e inovadora.</p>
+        <div class="cover-version">V1.0 — 2026</div>
       </div>
     </div>
   </section>
@@ -448,7 +541,7 @@ body:has(button:hover) #cursor .ring { width: 48px; height: 48px; }
 
     <div style="margin-top:80px;" class="reveal">
       <h3 style="color:var(--blue); font-size:14px; text-transform:uppercase; margin-bottom:40px;">Valores Fundamentais</h3>
-      <div style="display:grid; grid-template-columns: repeat(2, 1fr); gap: 40px;">
+      <div class="grid-spec responsive" style="margin-top:0;">
         <div style="font-size:15px;"><span style="color:var(--blue); margin-right:10px;">—</span> Rigor Estético: O detalhe faz a diferença entre o comum e o excelente.</div>
         <div style="font-size:15px;"><span style="color:var(--blue); margin-right:10px;">—</span> IA Prática: Tecnologia usada para resolver problemas e otimizar resultados.</div>
         <div style="font-size:15px;"><span style="color:var(--blue); margin-right:10px;">—</span> Foco no Resultado: Design e estratégia que trabalham para gerar retorno.</div>
@@ -504,7 +597,7 @@ body:has(button:hover) #cursor .ring { width: 48px; height: 48px; }
 
     <div class="reveal" style="margin-top:80px;">
     <!-- Símbolo Isolado e Tipografia do Logo -->
-    <div class="reveal" style="margin-top:80px; display:grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap:60px; margin-bottom:80px;">
+    <div class="reveal grid-spec responsive" style="margin-top:80px; gap:60px; margin-bottom:80px;">
       <div>
         <h3 style="color:var(--blue); font-size:14px; text-transform:uppercase; margin-bottom:24px;">Símbolo Isolado</h3>
         <div style="display:flex; gap:20px;">
@@ -668,7 +761,7 @@ body:has(button:hover) #cursor .ring { width: 48px; height: 48px; }
     </div>
 
     <div class="voice-attrs reveal">
-      <div style="display:grid; grid-template-columns:1fr 1fr; gap:40px;">
+      <div class="grid-spec responsive">
         <div class="grid-card">
           <h4 style="margin-bottom:24px; text-transform:uppercase; letter-spacing:0.1em; font-size:11px;">Pilares de Comunicação</h4>
           <ul style="list-style:none; font-size:14px; color:var(--gray-400)">
@@ -884,16 +977,32 @@ body:has(button:hover) #cursor .ring { width: 48px; height: 48px; }
   // THEME TOGGLE
   const btnDark = document.getElementById('btn-dark');
   const btnLight = document.getElementById('btn-light');
+  const floatingToggle = document.getElementById('floating-theme-toggle');
   
-  btnDark.onclick = () => {
-    document.body.classList.remove('light-mode');
-    btnDark.classList.add('active');
-    btnLight.classList.remove('active');
+  const setDarkMode = (isDark) => {
+    if (isDark) {
+      document.body.classList.add('dark-mode');
+      btnDark.classList.add('active');
+      btnLight.classList.remove('active');
+      floatingToggle.innerHTML = '🌞';
+    } else {
+      document.body.classList.remove('dark-mode');
+      btnLight.classList.add('active');
+      btnDark.classList.remove('active');
+      floatingToggle.innerHTML = '🌙';
+    }
   };
-  btnLight.onclick = () => {
-    document.body.classList.add('light-mode');
-    btnLight.classList.add('active');
-    btnDark.classList.remove('active');
+
+  // Immediate execution of default theme
+  setDarkMode(false);
+  document.body.style.backgroundColor = 'var(--bg)';
+  document.body.style.color = 'var(--text)';
+
+  btnDark.onclick = () => setDarkMode(true);
+  btnLight.onclick = () => setDarkMode(false);
+  floatingToggle.onclick = () => {
+    const isDark = document.body.classList.contains('dark-mode');
+    setDarkMode(!isDark);
   };
 
   // CURSOR
