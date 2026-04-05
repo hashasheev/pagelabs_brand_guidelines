@@ -423,16 +423,19 @@ body:has(button:hover) #cursor .ring { width: 48px; height: 48px; }
     transition: none; 
   }
   
-  .asset-scroll { display: flex; overflow-x: auto; padding-bottom: 24px; scroll-snap-type: x mandatory; width: 100%; }
-  .asset-item { width: 300px; flex: 0 0 auto; scroll-snap-align: start; }
+  .asset-scroll { display: flex; overflow-x: auto; padding-bottom: 24px; scroll-snap-type: x mandatory; width: 100%; gap: 16px; scrollbar-width: none; }
+  .asset-scroll::-webkit-scrollbar { display: none; }
+  .asset-group { flex: 0 0 calc(100vw - 48px); scroll-snap-align: center; }
+  .asset-item { width: 100%; }
   
   .horizontal-scroll {
     display: flex;
     overflow-x: auto;
-    gap: 20px;
-    padding-bottom: 20px;
+    gap: 16px;
+    padding-bottom: 12px;
     scroll-behavior: smooth;
     scroll-snap-type: x mandatory;
+    scrollbar-width: none;
     -webkit-overflow-scrolling: touch;
     width: 100%;
   }
@@ -497,7 +500,7 @@ body:has(button:hover) #cursor .ring { width: 48px; height: 48px; }
     <a href="#incorretos" class="nav-item"><span class="nav-num">08</span> Incorretos</a>
   </div>
   <div class="sidebar-footer">
-    Brand Identity Guidelines<br>v1.2 — 2026 · Confidencial
+    Brand Identity Guidelines<br>v1.3 — 2026 · Confidencial
   </div>
 </nav>
 
@@ -510,7 +513,7 @@ body:has(button:hover) #cursor .ring { width: 48px; height: 48px; }
       <h1 class="cover-title">Brand Identity <em>Guidelines.</em></h1>
       <div class="cover-meta">
         <p class="cover-tagline">Padrões visuais e estratégicos para a construção de uma marca forte, consistente e inovadora.</p>
-        <div class="cover-version">V1.2 — 2026</div>
+        <div class="cover-version">V1.3 — 2026</div>
       </div>
     </div>
   </section>
@@ -525,7 +528,7 @@ body:has(button:hover) #cursor .ring { width: 48px; height: 48px; }
 
     <div class="reveal" style="margin-bottom: 80px;">
       <h3 style="color:var(--blue); font-size:14px; text-transform:uppercase; margin-bottom:24px;">Quem Somos</h3>
-      <p style="font-size:24px; font-weight:300; line-height:1.5; color:var(--white)">Acreditamos que a simplicidade é o último grau de sofisticação. Nossa missão é traduzir a complexidade do marketing digital em soluções visuais claras e resultados sólidos.</p>
+      <p style="font-size:24px; font-weight:300; line-height:1.5; color:var(--text)">Acreditamos que a simplicidade é o último grau de sofisticação. Nossa missão é traduzir a complexidade do marketing digital em soluções visuais claras e resultados sólidos.</p>
     </div>
 
     <div class="grid-spec reveal">
@@ -600,7 +603,7 @@ body:has(button:hover) #cursor .ring { width: 48px; height: 48px; }
     <div class="reveal grid-spec responsive" style="margin-top:80px; gap:60px; margin-bottom:80px;">
       <div>
         <h3 style="color:var(--blue); font-size:14px; text-transform:uppercase; margin-bottom:24px;">Símbolo Isolado</h3>
-        <div style="display:flex; gap:20px;">
+        <div style="display:flex; gap:20px; justify-content: center; width: 100%;">
           <div style="width:100px; height:100px; display:flex; align-items:center; justify-content:center; background:var(--card-bg); border-radius:8px; border:1px solid var(--border);">
             <img src="Identidade visual pagelabs V2 final/SVG/pagelabs_simbolo_azul.svg" style="width:50px; height:auto;">
           </div>
